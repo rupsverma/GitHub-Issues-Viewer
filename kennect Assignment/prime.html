@@ -1,0 +1,49 @@
+<html>
+  <script>
+    function isPrime(n) {
+      if (n < 2) {
+        return false;
+      }
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i == 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function getPrimes(n) {
+      let primes = [];
+      for (let i = 2; i < n; i++) {
+        if (isPrime(i)) {
+          primes.push(i);
+        }
+      }
+      return primes;
+    }
+
+    function prime() {
+      const number = prompt("Enter a positive number: ");
+      if (number === null || number === "") {
+        return;
+      }
+      const n = parseInt(number);
+      if (isNaN(n) || n <= 0) {
+        return;
+      }
+      const primes = getPrimes(n);
+      if (primes.length >= 2) {
+        const diff = primes[primes.length - 1] - primes[primes.length - 2];
+        document.write(`Difference between ${primes[primes.length - 1]} and ${primes[primes.length - 2]} is  ${diff}<br>`);
+      }
+      if (isPrime(n)) {
+        document.write(`${n} is a prime number`);
+      } else {
+        document.write(`${n} is not a prime number`);
+      }
+    }
+  </script>
+  <body>
+    <button type="submit" value="check" onclick="prime();">check prime</button>
+  </body>
+</html>
